@@ -29,7 +29,7 @@ public class MainController implements Initializable  {
 
     @FXML
     void loadPageButtonAction(ActionEvent event) {
-        final String url = "https://localhost:8443/registration";
+        final String url = "https://localhost:8443/";
         WebEngine webEngine = webView.getEngine();
 //        webEngine.load(url);
         TrustManager[] trustAllCerts = new TrustManager[] {
@@ -60,6 +60,7 @@ public class MainController implements Initializable  {
         }
 //now you can load the content:
 
+        webEngine.setUserStyleSheetLocation(getClass().getResource("/css/style.css").toString());
         webEngine.load(url);
 
         System.out.println("fdsfs");

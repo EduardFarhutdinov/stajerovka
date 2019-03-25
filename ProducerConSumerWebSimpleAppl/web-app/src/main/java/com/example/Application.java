@@ -15,6 +15,7 @@ public class Application extends javafx.application.Application {
     public void start(Stage primaryStage) throws Exception {
 
         Parent root = FXMLLoader.load(getClass().getResource("/view-fxml/web-app.fxml"));
+
         primaryStage.setTitle("Simple Web App");
         primaryStage.setScene(new Scene(root, 609, 460));
         primaryStage.show();

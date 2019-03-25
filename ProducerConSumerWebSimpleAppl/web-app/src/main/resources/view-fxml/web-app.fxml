@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.web.WebView?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="609.0" style="-fx-background-color: #F1DFDF;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="609.0" style="-fx-background-color: #F1DFDF;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.controller.MainController">
    <children>
-      <Button fx:id="loadPageButton" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadPageButtonAction" text="load page" />
-      <WebView fx:id="webView" layoutY="52.0" prefHeight="399.0" prefWidth="609.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0" />
+      <Button fx:id="loadPageButton" layoutX="22.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadPageButtonAction" stylesheets="@../css/style.css" text="load page" />
+      <WebView fx:id="webView" layoutY="52.0" prefHeight="399.0" prefWidth="609.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0" />
    </children>
 </AnchorPane>
