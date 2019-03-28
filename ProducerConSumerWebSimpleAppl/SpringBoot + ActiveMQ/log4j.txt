@@ -1,4 +1,7 @@
-2019-03-15 10:32:48 INFO  JmsConsumer:22 - User{login='login', password='password'}
-2019-03-15 10:33:04 INFO  JmsConsumer:22 - User{login='login111', password='login1111'}
-2019-03-15 10:35:57 INFO  JmsConsumer:22 - User{login='qweqwe', password='eqweqw'}
-2019-03-16 15:21:35 INFO  JmsConsumer:22 - User{login='wqeqw', password='eqweq'}
+2019-03-28 16:13:54 INFO  JmsConsumer:22 - User{id=11, username='1', active=true, email='fafuwi@digital-message.com', roles=[USER]}
+2019-03-28 16:28:41 INFO  JmsConsumer:22 - User{id=12, username='123', active=true, email='yucasaniy@freehotmail.net', roles=[USER]}
+2019-03-28 16:51:39 INFO  JmsConsumer:22 - User{id=13, username='ed', active=true, email='yucasaniy@freehotmail.net', roles=[USER]}
+2019-03-28 17:21:14 INFO  JmsConsumer:22 - User{id=2, username='qwerty', active=true, email='fafuwi@digital-message.com', roles=[USER]}
+2019-03-28 17:21:47 INFO  JmsConsumer:22 - User{id=3, username='qwerty2', active=true, email='fafuwi@digital-message.com', roles=[USER]}
+2019-03-28 17:53:27 INFO  JmsConsumer:22 - User{id=4, username='qwerty', active=true, email='yucasaniy@freehotmail.net', roles=[USER]}
+2019-03-28 17:53:53 INFO  JmsConsumer:22 - User{id=5, username='qwerty2', active=true, email='fafuwi@digital-message.com', roles=[USER]}

@@ -17,9 +17,10 @@ create table user_role (
 create table usr (
     id int8 not null,
     active boolean not null,
-    email varchar(255),
     password varchar(255) not null,
     username varchar(255) not null,
+    email varchar(255),
+    auth varchar (255),
     primary key (id)
 );
 

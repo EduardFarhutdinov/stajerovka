@@ -5,13 +5,18 @@ import com.example.model.Role;
 import com.example.model.User;
 import com.example.repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -20,21 +25,39 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;
 
-      @Autowired
+    @Autowired
     private PasswordEncoder passwordEncoder;
+
     @Autowired
     JmsProducer jmsProducer;
 
+
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepo.findByUsername(username);
+    public UserDetails loadUserByUsername(String usernameFromLogin) throws UsernameNotFoundException {
+        User user = userRepo.findByUsername(usernameFromLogin);
+
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        String passwordFromForm = request.getParameter("password");
+        String auth = usernameFromLogin.concat(passwordFromForm);
+        System.out.println(usernameFromLogin);
+        System.out.println(passwordFromForm);
+
 
         if (user == null) {
-            throw new UsernameNotFoundException("User not found");
+            throw new UsernameNotFoundException("пользователь не найден");
+        } else {
+            if (checkPassword(auth, user.getAuth())) {
+                return user;
+            } else {
+                throw new BadCredentialsException("неверные данные");
+            }
         }
-
-        return user;
     }
+
+    public boolean checkPassword(String password, String hashedPassword) {
+        return passwordEncoder.matches(password, hashedPassword);
+    }
+
 
     public boolean addUser(User user) {
         User userFromDb = userRepo.findByUsername(user.getUsername());
@@ -45,6 +68,8 @@ public class UserService implements UserDetailsService {
 
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+
+        user.setAuth(passwordEncoder.encode(user.getUsername().concat(user.getPassword())));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         userRepo.save(user);
@@ -52,8 +77,6 @@ public class UserService implements UserDetailsService {
 
         return true;
     }
-
-
 
 
     public List<User> findAll() {
@@ -96,4 +119,6 @@ public class UserService implements UserDetailsService {
         userRepo.save(user);
 
     }
+
+
 }
